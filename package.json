@@ -1,0 +1,39 @@
+{
+  "name": "tech-radar-service",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "tsc & node ./src/app.js",
+    "test": "tsc & mocha ./src/**/*.test.js",
+    "cover": "tsc & istanbul cover node_modules/mocha/bin/_mocha --root ./src ./src/**/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/barend-erasmus/tech-radar-service.git"
+  },
+  "author": "Barend Erasmus",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/barend-erasmus/tech-radar-service/issues"
+  },
+  "homepage": "https://github.com/barend-erasmus/tech-radar-service#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.3",
+    "express": "^4.15.2",
+    "express-winston": "^2.3.0",
+    "winston": "^2.3.1",
+    "yargs": "^8.0.1",
+    "express-handlebars": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^3.4.35",
+    "@types/express": "^4.0.35",
+    "@types/mocha": "^2.2.40",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "supertest": "^3.0.0",
+    "tslint": "^5.0.0",
+    "typescript": "^2.2.2"
+  }
+}
