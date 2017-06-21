@@ -20,7 +20,7 @@ let config = require('./config').config;
 const argv = require('yargs').argv;
 
 if (argv.prod) {
-  config = require('./config.prod').config;
+    config = require('./config.prod').config;
 }
 
 export class TechRadarServiceApi {
@@ -63,6 +63,10 @@ export class TechRadarServiceApi {
 
     private configureRoutes(app: express.Express) {
         app.post(`/api/blip`, BlipRouter.create);
+        app.put(`/api/blip`, BlipRouter.update);
+        app.get(`/api/blip`, BlipRouter.list);
+        app.post(`/api/blip/upvote`, BlipRouter.upVote);
+        app.post(`/api/blip/downvote`, BlipRouter.downVote);
     }
 
     private configureErrorHandling(app: express.Express) {

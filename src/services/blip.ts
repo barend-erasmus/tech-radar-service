@@ -27,6 +27,22 @@ export class BlipService {
         });
     }
 
+    public update(id: string, name: string, description: string, quadrant: string): Promise<Blip> {
+        const self = this;
+        return co(function* () {
+
+            const blip: Blip = yield self.blipRepository.findById(id);
+
+            blip.name = name;
+            blip.description = description;
+            blip.quadrant = quadrant;
+
+            const result: boolean = yield self.blipRepository.save(blip);
+
+            return blip;
+        });
+    }
+
     public upVote(id: string, user: string): Promise<Blip> {
         const self = this;
         return co(function* () {
@@ -42,7 +58,7 @@ export class BlipService {
             if (existingVote) {
                existingVote.isUpVote = true; 
             }else {
-                blip.votes.push(new Vote(id, user, true));
+                blip.votes.push(new Vote(user, true));
             }
 
             const result: boolean = yield self.blipRepository.save(blip);
@@ -66,13 +82,17 @@ export class BlipService {
             if (existingVote) {
                existingVote.isUpVote = false; 
             }else {
-                blip.votes.push(new Vote(id, user, false));
+                blip.votes.push(new Vote(user, false));
             }
 
             const result: boolean = yield self.blipRepository.save(blip);
 
             return blip;
         });
+    }
+
+    public list(): Promise<Blip[]> {
+        return this.blipRepository.list();
     }
 
     private generateAngle(): number {
