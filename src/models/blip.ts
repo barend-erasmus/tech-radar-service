@@ -17,7 +17,7 @@ export class Blip {
 
     public getValue(): number {
 
-        let value = this.votes.filter(x => x.id == this.id && x.isUpVote).length - this.votes.filter(x => x.id == this.id && !x.isUpVote).length;
+        let value = this.votes.filter(x => x.isUpVote).length - this.votes.filter(x => !x.isUpVote).length;
 
         if (value < 0) {
             value = 0;
