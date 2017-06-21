@@ -9,7 +9,7 @@ import bodyParser = require('body-parser');
 import expressWinston = require('express-winston');
 
 // Imports routes
-import { HelloRouter } from './routes/hello';
+import { BlipRouter } from './routes/blip';
 
 // Imports logger
 import { logger } from './logger';
@@ -62,7 +62,7 @@ export class TechRadarServiceApi {
     }
 
     private configureRoutes(app: express.Express) {
-        app.use(`/api/hello`, HelloRouter.world);
+        app.post(`/api/blip`, BlipRouter.create);
     }
 
     private configureErrorHandling(app: express.Express) {

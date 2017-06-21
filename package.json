@@ -19,12 +19,15 @@
   "homepage": "https://github.com/barend-erasmus/tech-radar-service#readme",
   "dependencies": {
     "body-parser": "^1.17.1",
+    "co": "^4.6.0",
     "cors": "^2.8.3",
     "express": "^4.15.2",
+    "express-handlebars": "^3.0.0",
     "express-winston": "^2.3.0",
+    "sqlite3": "^3.1.8",
+    "uuid": "^3.1.0",
     "winston": "^2.3.1",
-    "yargs": "^8.0.1",
-    "express-handlebars": "^3.0.0"
+    "yargs": "^8.0.1"
   },
   "devDependencies": {
     "@types/chai": "^3.4.35",

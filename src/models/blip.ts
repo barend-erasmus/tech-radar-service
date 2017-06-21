@@ -13,6 +13,21 @@ export class Blip {
         public timestamp: number,
         public votes: Vote[]) {
 
+    }   
+
+    public getValue(): number {
+
+        let value = this.votes.filter(x => x.id == this.id && x.isUpVote).length - this.votes.filter(x => x.id == this.id && !x.isUpVote).length;
+
+        if (value < 0) {
+            value = 0;
+        }
+
+        if (value > 100) {
+            value = 100;
+        }
+
+        return value;
     }
 
     public isValid(): boolean {
