@@ -14,7 +14,7 @@
     }
   },
   "host": "192.168.46.112",
-  "basePath": "/techradarservice",
+  "basePath": "/techradarservice/api",
   "tags": [
     {
       "name": "blip",
@@ -51,8 +51,158 @@
           }
         ],
         "responses": {
-          "405": {
-            "description": "Invalid input"
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "blip"
+        ],
+        "summary": "",
+        "description": "",
+        "operationId": "blipput",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/blip"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "blip"
+        ],
+        "summary": "",
+        "description": "",
+        "operationId": "blipget",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "description": "",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/blip"
+            }
+          }
+        }
+      }
+    },
+    "/blip/list": {
+      "get": {
+        "tags": [
+          "blip"
+        ],
+        "summary": "",
+        "description": "",
+        "operationId": "bliplistget",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/blip"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/blip/upvote": {
+      "post": {
+        "tags": [
+          "blip"
+        ],
+        "summary": "",
+        "description": "",
+        "operationId": "blipupvotepost",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/vote"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/blip/downvote": {
+      "post": {
+        "tags": [
+          "blip"
+        ],
+        "summary": "",
+        "description": "",
+        "operationId": "blipdownvotepost",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/vote"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
           }
         }
       }
@@ -75,6 +225,20 @@
           "type": "string"
         },
         "creator": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "vote": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "user": {
           "type": "string"
         }
       }

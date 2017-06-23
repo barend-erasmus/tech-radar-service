@@ -11,7 +11,7 @@ export class BlipRepository {
     private db: any;
 
     constructor() {
-        const db = new sqlite3.Database('./tech-radar.db');
+        const db = new sqlite3.Database(__dirname + '/tech-radar.db');
 
         this.db = db;
     }

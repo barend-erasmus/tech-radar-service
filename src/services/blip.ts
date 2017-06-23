@@ -95,6 +95,10 @@ export class BlipService {
         return this.blipRepository.list();
     }
 
+    public find(id: string): Promise<Blip> {
+        return this.blipRepository.findById(id);
+    }
+
     private generateAngle(): number {
         return Math.random() * 90
     }

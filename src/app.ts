@@ -2,6 +2,8 @@
 import express = require("express");
 import * as exphbs from 'express-handlebars';
 import * as path from 'path';
+import * as fs from 'fs';
+import * as swaggerUi from 'swagger-ui-express';
 
 // Imports middleware
 import * as cors from 'cors';
@@ -64,9 +66,12 @@ export class TechRadarServiceApi {
     private configureRoutes(app: express.Express) {
         app.post(`/api/blip`, BlipRouter.create);
         app.put(`/api/blip`, BlipRouter.update);
-        app.get(`/api/blip`, BlipRouter.list);
+        app.get(`/api/blip`, BlipRouter.get);
+        app.get(`/api/blip/list`, BlipRouter.list);
         app.post(`/api/blip/upvote`, BlipRouter.upVote);
         app.post(`/api/blip/downvote`, BlipRouter.downVote);
+
+        app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(JSON.parse(fs.readFileSync(__dirname + '/swagger.json', 'utf-8'))));
     }
 
     private configureErrorHandling(app: express.Express) {

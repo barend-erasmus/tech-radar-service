@@ -12,8 +12,11 @@
         "npm --prefix /opt/tech-radar-service install",
         "docker stop tech-radar-service",
         "docker rm tech-radar-service",
+        "docker stop tech-radar-service-db",
+        "docker rm tech-radar-service-db",
         "docker build --no-cache -t tech-radar-service /docker-uploads/tech-radar-service",
-        "docker run -d -p 8080:3000 --name tech-radar-service -v /logs:/logs -v /opt/tech-radar-service:/opt/tech-radar-service -t tech-radar-service"
+        "docker run --name tech-radar-service-db -v /opt/tech-radar-service-db:/data/db -d mongo",
+        "docker run -d -p 8083:3000 --name tech-radar-service -v /logs:/logs -v /opt/tech-radar-service:/opt/tech-radar-service --link tech-radar-service-db:mongo -t tech-radar-service"
     ],
     "directories": [
         {
