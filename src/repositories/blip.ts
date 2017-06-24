@@ -6,5 +6,6 @@ export interface IBlipRepository {
     save(blip: Blip): Promise<boolean>;
     create(blip: Blip): Promise<boolean>;
     findById(id: string): Promise<Blip>;
-    list(): Promise<Blip[]>
+    list(): Promise<Blip[]>;
+    delete(id: string): Promise<boolean>;
 }

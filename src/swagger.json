@@ -115,6 +115,34 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": [
+          "blip"
+        ],
+        "summary": "",
+        "description": "",
+        "operationId": "blipget",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "id",
+            "type": "string",
+            "description": "",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
       }
     },
     "/blip/list": {
@@ -228,6 +256,10 @@
           "type": "string"
         },
         "value": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "offset": {
           "type": "string"
         }
       }

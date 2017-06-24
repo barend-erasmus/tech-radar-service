@@ -66,6 +66,7 @@ export class TechRadarServiceApi {
     private configureRoutes(app: express.Express) {
         app.post(`/api/blip`, BlipRouter.create);
         app.put(`/api/blip`, BlipRouter.update);
+        app.delete(`/api/blip`, BlipRouter.delete);
         app.get(`/api/blip`, BlipRouter.get);
         app.get(`/api/blip/list`, BlipRouter.list);
         app.post(`/api/blip/upvote`, BlipRouter.upVote);

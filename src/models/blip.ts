@@ -12,6 +12,7 @@ export class Blip {
         public quadrant: string,
         public creator: string,
         public angle: number,
+        public offset: number,
         public timestamp: number,
         public votes: Vote[]) {
 
@@ -30,6 +31,8 @@ export class Blip {
     private getValue(): number {
 
         let value = this.votes.filter(x => x.isUpVote).length - this.votes.filter(x => !x.isUpVote).length;
+
+        value += this.offset;
 
         if (value < 0) {
             value = 0;

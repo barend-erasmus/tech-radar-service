@@ -4,6 +4,7 @@ CREATE TABLE `blip` (
 	`description`	TEXT NOT NULL,
 	`creator`	TEXT NOT NULL,
 	`angle`	TEXT NOT NULL,
+	`offset`	NUMERIC NOT NULL,
 	`timestamp`	NUMERIC NOT NULL,
 	`quadrant`	TEXT NOT NULL,
 	PRIMARY KEY(`id`)

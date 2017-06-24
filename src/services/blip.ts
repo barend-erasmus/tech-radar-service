@@ -15,11 +15,11 @@ export class BlipService {
 
     }
 
-    public create(name: string, description: string, quadrant: string, creator: string): Promise<Blip> {
+    public create(name: string, description: string, quadrant: string, offset: number, creator: string): Promise<Blip> {
         const self = this;
         return co(function* () {
 
-            const blip: Blip = new Blip(uuid.v4(), name, description, quadrant, creator, self.generateAngle(), new Date().getTime(), []);
+            const blip: Blip = new Blip(uuid.v4(), name, description, quadrant, creator, self.generateAngle(), offset, new Date().getTime(), []);
 
             const result: boolean = yield self.blipRepository.create(blip);
 
@@ -27,7 +27,7 @@ export class BlipService {
         });
     }
 
-    public update(id: string, name: string, description: string, quadrant: string): Promise<Blip> {
+    public update(id: string, name: string, description: string, quadrant: string, offset: number): Promise<Blip> {
         const self = this;
         return co(function* () {
 
@@ -36,6 +36,7 @@ export class BlipService {
             blip.name = name;
             blip.description = description;
             blip.quadrant = quadrant;
+            blip.offset = offset;
 
             const result: boolean = yield self.blipRepository.save(blip);
 
@@ -97,6 +98,10 @@ export class BlipService {
 
     public find(id: string): Promise<Blip> {
         return this.blipRepository.findById(id);
+    }
+
+    public remove(id: string): Promise<boolean> {
+        return this.blipRepository.delete(id);
     }
 
     private generateAngle(): number {

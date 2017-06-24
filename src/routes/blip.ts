@@ -33,7 +33,19 @@ export class BlipRouter {
             const blipRepository: IBlipRepository = argv.prod? new ProdBlipRepository() : new ProdBlipRepository();
             const blipService: BlipService = new BlipService(blipRepository);
 
-            yield blipService.create(req.body.name, req.body.description, req.body.quadrant, req.body.creator);
+            yield blipService.create(req.body.name, req.body.description, req.body.quadrant, req.body.creator, req.body.offset);
+
+            res.json(true);
+        });
+    }
+
+    public static delete(req: Request, res: Response, next: () => void) {
+
+        co(function* () {
+            const blipRepository: IBlipRepository = argv.prod? new ProdBlipRepository() : new ProdBlipRepository();
+            const blipService: BlipService = new BlipService(blipRepository);
+
+            yield blipService.remove(req.body.id);
 
             res.json(true);
         });
@@ -75,7 +87,7 @@ export class BlipRouter {
             const blipRepository: IBlipRepository = argv.prod? new ProdBlipRepository() : new ProdBlipRepository();
             const blipService: BlipService = new BlipService(blipRepository);
 
-            yield blipService.update(req.body.id, req.body.name, req.body.description, req.body.quadrant);
+            yield blipService.update(req.body.id, req.body.name, req.body.description, req.body.quadrant, req.body.offset);
 
             res.json(true);
         });

@@ -16,7 +16,7 @@ export class BlipRepository {
         this.db = db;
     }
 
-    save(blip: Blip): Promise<boolean> {
+    public save(blip: Blip): Promise<boolean> {
         const self = this;
         return co(function* () {
 
@@ -37,7 +37,7 @@ export class BlipRepository {
         });
     }
 
-    create(blip: Blip): Promise<boolean> {
+    public create(blip: Blip): Promise<boolean> {
         const self = this;
         return co(function* () {
 
@@ -59,7 +59,7 @@ export class BlipRepository {
         });
     }
 
-    findById(id: string): Promise<Blip> {
+    public findById(id: string): Promise<Blip> {
         const self = this;
         return co(function* () {
 
@@ -69,7 +69,7 @@ export class BlipRepository {
                 return null;
             }
 
-            let blip: Blip = new Blip(results[0].id, results[0].name, results[0].description, results[0].quadrant, results[0].creator, results[0].angle, results[0].timestamp, []);
+            let blip: Blip = new Blip(results[0].id, results[0].name, results[0].description, results[0].quadrant, results[0].creator, results[0].angle, results[0].offset, results[0].timestamp, []);
 
             blip = yield self.loadVotesForBlip(blip);
 
@@ -77,18 +77,22 @@ export class BlipRepository {
         });
     }
 
-    list(): Promise<Blip[]> {
+    public list(): Promise<Blip[]> {
         const self = this;
         return co(function* () {
 
             const results: any[] = yield self.executeQuery(self.db, 'SELECT * FROM `blip`', []);
 
-            let blips: Blip[] = results.map((x) => new Blip(x.id, x.name, x.description, x.quadrant, x.creator, x.angle, x.timestamp, []));
+            let blips: Blip[] = results.map((x) => new Blip(x.id, x.name, x.description, x.quadrant, x.creator, x.angle, x.offset, x.timestamp, []));
 
             blips = yield blips.map((x) => self.loadVotesForBlip(x));
 
             return blips;
         });
+    }
+
+    public delete(id: string): Promise<boolean> {
+        throw new Error('Not Implemented Yet');
     }
 
     private loadVotesForBlip(blip: Blip): Promise<Blip> {
