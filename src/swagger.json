@@ -131,7 +131,7 @@
         ],
         "parameters": [
           {
-            "in": "body",
+            "in": "query",
             "name": "id",
             "type": "string",
             "description": "",
