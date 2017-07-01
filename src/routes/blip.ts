@@ -33,7 +33,7 @@ export class BlipRouter {
             const blipRepository: IBlipRepository = argv.prod? new ProdBlipRepository() : new ProdBlipRepository();
             const blipService: BlipService = new BlipService(blipRepository);
 
-            yield blipService.create(req.body.name, req.body.description, req.body.quadrant, req.body.creator, req.body.offset);
+            yield blipService.create(req.body.name, req.body.description, req.body.quadrant, req.body.offset, req.body.creator);
 
             res.json(true);
         });
@@ -45,7 +45,7 @@ export class BlipRouter {
             const blipRepository: IBlipRepository = argv.prod? new ProdBlipRepository() : new ProdBlipRepository();
             const blipService: BlipService = new BlipService(blipRepository);
 
-            yield blipService.remove(req.body.id);
+            yield blipService.remove(req.query.id);
 
             res.json(true);
         });
